@@ -6,6 +6,12 @@ interface User {
   username: string
 }
 
+// Hardcoded credentials (in memory)
+const VALID_CREDENTIALS = {
+  username: 'admin',
+  password: 'password123'
+}
+
 interface AuthContextType {
   user: User | null
   login: (username: string, password: string) => Promise<boolean>
@@ -14,12 +20,6 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
-
-// Hardcoded credentials (in memory)
-const VALID_CREDENTIALS = {
-  username: 'admin',
-  password: 'password123'
-}
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
